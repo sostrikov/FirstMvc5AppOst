@@ -12,6 +12,8 @@ namespace FirstMvc5App.Controllers
         // создаем контекст данных
         BookContext db = new BookContext();
 
+
+        
         public ActionResult Index()
         {
             // получаем из бд все объекты Book
@@ -20,6 +22,23 @@ namespace FirstMvc5App.Controllers
             ViewBag.Books = books;
             // возвращаем представление
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Buy(int id)
+        {
+            ViewBag.BookId = id;
+            return View();
+        }
+        [HttpPost]
+        public string Buy(Purchase purchase)
+        {
+            purchase.Date = DateTime.Now;
+            // добавляем информацию о покупке в базу данных
+            db.Purchases.Add(purchase);
+            // сохраняем в бд все изменения
+            db.SaveChanges();
+            return "Спасибо," + purchase.Person + ", за покупку!";
         }
     }
 }
