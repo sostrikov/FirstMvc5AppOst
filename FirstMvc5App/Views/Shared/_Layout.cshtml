@@ -4,14 +4,77 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <style>
+        #navbar ul {
+            display: none;
+            background-color: #f90;
+            position: absolute;
+            top: 100%;
+        }
+
+        #navbar li:hover ul {
+            display: block;
+        }
+
+        #navbar, #navbar ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #navbar {
+            height: 30px;
+            background-color: #666;
+            padding-left: 25px;
+            min-width: 470px;
+        }
+
+            #navbar li {
+                float: left;
+                position: relative;
+                height: 100%;
+            }
+
+                #navbar li a {
+                    display: block;
+                    padding: 6px;
+                    width: 100px;
+                    color: #fff;
+                    text-decoration: none;
+                    text-align: center;
+                }
+
+            #navbar ul li {
+                float: none;
+            }
+
+            #navbar li:hover {
+                background-color: #f90;
+            }
+
+            #navbar ul li:hover {
+                background-color: #666;
+            }
+    </style>
 </head>
 
 <body>
     <nav>
-        <ul class="menu">
+        <ul id="navbar">
             <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+            <li>@Html.ActionLink("Покупки", "Index", "Purchases")</li>
         </ul>
     </nav>
     @RenderBody()
+<footer>
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Footer")
+    }
+    else
+    {
+        <span>Разработано в УИ-ВЦ 2019</span>
+    }
+</footer>
 </body>
 </html>
