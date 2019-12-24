@@ -45,7 +45,27 @@ namespace FirstMvc5App.Controllers
         {
             return DateTime.Now;
         }
-//Вычисляем площадь
+
+        /// <summary>
+        /// Редактировать книги
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditBook(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Book book = db.Books.Find(id);
+            if (book != null)
+            {
+                return View(book);
+            }
+            return HttpNotFound();
+        }
+        //Вычисляем площадь
         public string Square(int a=10, int h=3)
         {
             double s = a * h / 2.0;
@@ -57,6 +77,14 @@ namespace FirstMvc5App.Controllers
         {
             return new HtmlResult("<h2>Привет мир!</h2>");
         }
-        
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }

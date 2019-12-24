@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +18,8 @@ namespace FirstMvc5App.Models
         // ID книги
         public int BookId { get; set; }
         // дата покупки
+        [DisplayName("Дата покупки")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
     }
 }

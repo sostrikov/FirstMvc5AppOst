@@ -18,6 +18,7 @@ namespace FirstMvc5App.Controllers
         // GET: Purchases
         public ActionResult Index()
         {
+            
             return View(db.Purchases.ToList());
         }
 
@@ -51,6 +52,8 @@ namespace FirstMvc5App.Controllers
         {
             if (ModelState.IsValid)
             {
+                //purchase.BookId = ;
+                purchase.Date = DateTime.Now;
                 db.Purchases.Add(purchase);
                 db.SaveChanges();
                 return RedirectToAction("Index");
